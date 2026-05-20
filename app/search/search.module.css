@@ -1,0 +1,3 @@
+.page { padding: 2rem; max-width: 900px; margin: 0 auto; }
+.backRow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.empty { color: var(--steel); font-size: 0.9rem; padding: 2rem 0; }
