@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getArtistInfo, getArtistTopTracks, getArtistAlbums, calcRatio } from '@/lib/fetchers/lastfm';
 import { getMusicBrainzArtist } from '@/lib/fetchers/musicbrainz';
 
-export async function GET(req: NextRequest) {
-  const name = req.nextUrl.searchParams.get('artist')?.trim();
-  if (!name) return NextResponse.json({ error: 'Missing artist param' }, { status: 400 });
+export async function GET(req: NextRequest, { params }: { params: Promise<{ artist: string }> }) {
+  const { artist: encoded } = await params;
+  const name = decodeURIComponent(encoded);
 
   try {
     const [lfm, lfmTracks, lfmAlbums, mb] = await Promise.allSettled([
